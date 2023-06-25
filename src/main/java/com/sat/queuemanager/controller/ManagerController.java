@@ -19,20 +19,20 @@ public class ManagerController {
     @Autowired
     private ManagerService managerService;
     @GetMapping("/getTicket/{priority}")
-    @Operation(summary = "This method is to the CLIENT to obtain a ticket")
+    @Operation(summary = "This method is to the CLIENT to obtain a ticket.")
     public String getTicket(@Parameter(description = "Could be: TE, CJ, EM, MA (those datas are from DB H2)") @PathVariable("priority") String priority){
         String ticket = queueService.getTicket(priority);
         return ticket;
     }
 
     @GetMapping("/getTickets")
-    @Operation(summary = "This method is to obtain all ticket's in state waiting")
+    @Operation(summary = "This method is to obtain all ticket's in state waiting.")
     public List<QueueDetail> getTickets(){
         return managerService.getQueueDetails();
     }
 
     @DeleteMapping("/nextTicket/{cashier}")
-    @Operation(summary = "This method is for the CASHIER to obtain the next Ticket")
+    @Operation(summary = "This method is for the CASHIER to obtain the next Ticket.")
     public String nextTicket(@Parameter(description = "It's the Id of the cashier for now it's be any text") @PathVariable("cashier") String cashier){
         return managerService.nextTicket(cashier);
     }
